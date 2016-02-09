@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 
-from ruleengine.views import RuleViewSet, RuleDetail
+from ruleengine.views import RuleViewSet, RuleDetail, ruleexecuter
 from rest_framework.routers import DefaultRouter
 
 #rule_list = RuleViewSet.as_view()
@@ -34,5 +34,6 @@ router.register(r'rules', RuleViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
-    url(r'^rules/(?P<pk>[0-9]+)/$', RuleDetail.as_view()),		
+    url(r'^rules/(?P<pk>[0-9]+)/$', RuleDetail.as_view()),	
+    url(r'executerule/(?P<pk>[0-9]+)/$', ruleexecuter),	
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
